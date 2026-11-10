@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff6f1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='84'%3E%F0%9F%8C%B7%3C/text%3E%3C/svg%3E">
+<title>A Little Comfort — Cozy Game</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+:root{--ink:#463b4a;--muted:#8c7c89;--pink:#ef9aab;--rose:#dc758e;--cream:#fffaf6;--lilac:#a594c8;--green:#87ad91}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 30%,#fffdf9 0,#fff6f1 46%,#f8edf4 100%);color:var(--ink);font-family:'DM Sans',sans-serif;display:grid;place-items:center;padding:22px;overflow-x:hidden}.game{width:min(1040px,100%);min-height:min(710px,calc(100vh - 44px));background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.95);border-radius:30px;box-shadow:0 24px 80px #775c6d1c,0 3px 12px #775c6d0b;display:grid;grid-template-columns: minmax(0,1.1fr) minmax(310px,.9fr);overflow:hidden;position:relative}.scene{position:relative;min-height:650px;background:linear-gradient(155deg,#fae5e8,#f7e9f1 53%,#e9e9f4);display:grid;place-items:center;overflow:hidden}.scene:before,.scene:after{content:'';position:absolute;border-radius:50%;filter:blur(1px);pointer-events:none}.scene:before{width:360px;height:360px;left:-120px;bottom:-165px;background:#ffeacb88}.scene:after{width:260px;height:260px;right:-110px;top:-100px;background:#fff9e899}.sun{position:absolute;width:330px;height:330px;border-radius:50%;background:#fffaf18c;top:66px;left:50%;transform:translateX(-50%);box-shadow:0 0 0 24px #fff9f044}.window{position:absolute;top:0;right:9%;height:175px;width:106px;border:6px solid #fff9f0b5;border-top:0;border-radius:0 0 54px 54px;opacity:.72}.window:before{content:'';position:absolute;top:0;left:50%;height:100%;border-left:4px solid #fff9f0b5}.plant{position:absolute;bottom:40px;left:8%;font-size:76px;opacity:.75;transform:rotate(-8deg)}.scene-label{position:absolute;top:24px;left:28px;font-size:12px;letter-spacing:1.9px;text-transform:uppercase;font-weight:700;color:#9e8290}.portrait-wrap{position:relative;width:min(410px,88%);z-index:1;margin-top:27px}.portrait{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 16px 15px #8a61701a);touch-action:none;user-select:none}.hair-zone{fill:transparent;stroke:transparent;cursor:grab}.hair-zone:active{cursor:grabbing}.hint-ring{fill:none;stroke:#fff9f1aa;stroke-width:2;stroke-dasharray:4 7;animation:rotate 18s linear infinite;transform-origin:200px 171px;pointer-events:none}@keyframes rotate{to{transform:rotate(360deg)}}.touch-hint{position:absolute;z-index:2;left:50%;bottom:21px;transform:translateX(-50%);white-space:nowrap;background:#fffaf1ce;border:1px solid #fff;padding:10px 16px;border-radius:30px;font-size:13px;font-weight:600;color:#886c78;box-shadow:0 4px 14px #80627413;transition:opacity .4s}.touch-hint span{display:inline-block;margin-right:6px;animation:wiggle 1.8s ease-in-out infinite}@keyframes wiggle{50%{transform:translate(4px,-2px)}}.side{padding:42px 38px 30px;display:flex;flex-direction:column;justify-content:center;position:relative}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2.4px;color:#ba8295;font-weight:700;margin-bottom:12px}.title{font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,47px);line-height:1.08;letter-spacing:-.7px;margin:0 0 14px}.intro{font-size:15px;line-height:1.75;color:#827782;margin:0 0 27px;max-width:380px}.character{display:flex;align-items:center;gap:12px;margin-bottom:24px}.avatar{height:44px;width:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffe4d5,#eac9df);font-size:24px}.name{font-weight:700;font-size:14px}.status{font-size:12px;color:#a18d99;margin-top:3px}.status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#93bc99;margin-right:5px}.meter-head{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#877985;font-weight:600;margin-bottom:9px}.meter-value{color:#c8758c}.meter{height:11px;background:#f3e7ed;border-radius:20px;overflow:hidden;box-shadow:inset 0 1px 3px #8c58721a}.fill{width:8%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#f3b3b0,#d995b7,#a995c9);transition:width .35s ease}.mood-row{display:flex;justify-content:space-between;color:#a697a1;font-size:11px;margin-top:7px}.message{margin:25px 0 19px;min-height:84px;padding:17px 18px;background:#fff9f5;border:1px solid #f5e8e7;border-radius:17px;display:flex;align-items:center;gap:12px;transition:transform .2s,background .3s}.message.pop{transform:scale(1.015);background:#fff5f2}.bubble-icon{font-size:22px;flex-shrink:0}.message p{font-size:14px;line-height:1.55;color:#766a76;margin:0}.message strong{color:#665464}.controls{display:flex;align-items:center;gap:11px}.reset{appearance:none;border:0;background:#f4edf1;color:#8e7e8d;border-radius:13px;padding:12px 16px;font:600 13px 'DM Sans';cursor:pointer;transition:background .2s,transform .2s}.reset:hover{background:#eee3eb;transform:translateY(-1px)}.microcopy{font-size:11px;line-height:1.5;color:#aa9da7}.footer{margin-top:27px;border-top:1px solid #f1e8ed;padding-top:16px;font-size:11px;line-height:1.6;color:#ae9fa9}.sparkle{position:absolute;pointer-events:none;font-size:20px;animation:floatUp 1s ease-out forwards;z-index:5}@keyframes floatUp{0%{opacity:0;transform:translateY(12px) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translateY(-46px) scale(1.2)}}.complete .fill{background:linear-gradient(90deg,#e9b18a,#d895a9,#a28cc3)}.complete .message{background:#fbf6ed;border-color:#eee3ce}@media(max-width:750px){body{padding:0;display:block}.game{min-height:100svh;border-radius:0;border:0;grid-template-columns:1fr;grid-template-rows:minmax(410px,52svh) auto;overflow:hidden}.scene{min-height:410px;max-height:58svh}.portrait-wrap{width:min(320px,70%);margin-top:22px;transform:translateY(-13px)}.sun{width:260px;height:260px;top:48px}.plant{font-size:53px;bottom:20px}.window{height:130px}.side{padding:27px 25px max(24px,env(safe-area-inset-bottom));justify-content:flex-start}.title{font-size:36px}.intro{margin-bottom:19px;font-size:14px}.character{margin-bottom:18px}.message{margin:20px 0 14px;min-height:72px}.footer{margin-top:20px}.scene-label{top:18px;left:20px}}@media(max-height:760px) and (min-width:751px){.game{min-height:600px}.side{padding:28px 34px}.intro{margin-bottom:18px}.message{margin:17px 0 13px}.footer{margin-top:19px}}
+</style>
+</head>
+<body>
+<main class="game" id="game">
+<section class="scene" aria-label="Illustration of Mina, an adult woman">
+ <div class="scene-label">A quiet moment · 01</div><div class="sun"></div><div class="window"></div><div class="plant" aria-hidden="true">🪴</div>
+ <div class="portrait-wrap">
+  <svg class="portrait" id="portrait" viewBox="0 0 400 510" role="img" aria-label="Mina is smiling and invites a gentle, consensual hair pat">
+   <defs>
+    <linearGradient id="hair" x1=".1" y1="0" x2=".9" y2="1"><stop stop-color="#755160"/><stop offset=".55" stop-color="#976579"/><stop offset="1" stop-color="#b37a87"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#ffe4d1"/><stop offset="1" stop-color="#f2c5b4"/></linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6f1ed"/><stop offset="1" stop-color="#d9d2e8"/></linearGradient>
+   </defs>
+   <!-- shoulders and sweater -->
+   <path d="M74 510 Q82 410 123 387 Q150 370 200 372 Q253 370 280 389 Q321 411 328 510Z" fill="url(#shirt)"/>
+   <path d="M151 378 Q161 413 200 425 Q239 414 250 378 L229 363H171Z" fill="#f2c7b9"/>
+   <path d="M155 382 Q172 419 200 429 Q229 419 246 382 L264 397 Q242 439 200 446 Q158 438 137 397Z" fill="#fff9f5"/>
+   <!-- hair back -->
+   <path d="M100 213 Q80 78 160 43 Q234 4 293 79 Q331 131 302 266 L288 376 Q275 405 246 379 L137 385 Q110 376 106 338Z" fill="url(#hair)"/>
+   <path d="M121 233 Q104 320 132 394 Q108 386 99 348 L91 249Z" fill="#795364"/><path d="M283 208 Q306 298 269 390 Q295 384 306 341 L313 243Z" fill="#82586b"/>
+   <!-- ears and face -->
+   <ellipse cx="121" cy="222" rx="19" ry="28" fill="#f1c6b5"/><ellipse cx="279" cy="222" rx="19" ry="28" fill="#f1c6b5"/>
+   <path d="M125 151 Q127 94 198 88 Q271 91 276 155 L267 245 Q260 310 201 334 Q145 312 134 253Z" fill="url(#skin)"/>
+   <!-- fringe -->
+   <path d="M113 192 Q91 104 146 66 Q187 32 247 68 Q284 91 283 174 Q262 143 242 123 Q227 160 192 172 Q158 185 128 169Z" fill="url(#hair)"/>
+   <path d="M178 83 Q193 131 167 165 Q197 159 213 130 Q226 107 220 78 Q207 63 178 83Z" fill="#a3707f" opacity=".8"/>
+   <path d="M244 91 Q278 124 274 176 Q294 138 271 99Z" fill="#765061" opacity=".8"/>
+   <!-- eyebrows, eyes -->
+   <path d="M149 203 Q165 192 180 201" fill="none" stroke="#805d65" stroke-width="4" stroke-linecap="round"/><path d="M222 201 Q239 192 252 203" fill="none" stroke="#805d65" stroke-width="4" stroke-linecap="round"/>
+   <path d="M149 220 Q164 207 181 220 Q165 235 149 220Z" fill="#fffaf7"/><path d="M220 220 Q237 207 253 220 Q237 235 220 220Z" fill="#fffaf7"/>
+   <ellipse cx="166" cy="220" rx="6" ry="8" fill="#718d83"/><ellipse cx="237" cy="220" rx="6" ry="8" fill="#718d83"/><circle cx="168" cy="217" r="2" fill="white"/><circle cx="239" cy="217" r="2" fill="white"/>
+   <path d="M196 225 Q190 244 199 246" fill="none" stroke="#d49e93" stroke-width="2.5" stroke-linecap="round"/>
+   <path d="M181 267 Q199 278 218 265 Q213 289 199 288 Q186 287 181 267Z" fill="#c97780"/><path d="M185 270 Q199 275 214 269" fill="none" stroke="#fff0e8" stroke-width="2"/>
+   <ellipse cx="145" cy="248" rx="15" ry="8" fill="#e99f9e" opacity=".25"/><ellipse cx="255" cy="248" rx="15" ry="8" fill="#e99f9e" opacity=".25"/>
+   <!-- hair shine -->
+   <path d="M112 175 Q105 109 155 77" fill="none" stroke="#d29aa0" stroke-width="7" stroke-linecap="round" opacity=".35"/>
+   <!-- only interaction target is the hair -->
+   <ellipse class="hint-ring" cx="199" cy="140" rx="91" ry="43"/>
+   <ellipse class="hair-zone" id="hairZone" cx="199" cy="143" rx="79" ry="51" aria-label="Stroke Mina's hair gently"/>
+   <path id="strokeTrail" d="" fill="none" stroke="#fff6d8" stroke-width="5" stroke-linecap="round" opacity=".8" pointer-events="none"/>
+  </svg>
+ </div>
+ <div class="touch-hint" id="hint"><span>↔</span> Gently stroke the highlighted hair</div>
+</section>
+<section class="side">
+ <div class="eyebrow">A cozy little game</div>
+ <h1 class="title">A Little<br>Comfort</h1>
+ <p class="intro">Mina, 22, has had a long day. She asked if you could gently smooth her hair for a moment. Take it slow and help her unwind.</p>
+ <div class="character"><div class="avatar">🌷</div><div><div class="name">Mina <span style="font-weight:400;color:#ad9ba5">· she/her</span></div><div class="status"><i></i><span id="status">Here with you</span></div></div></div>
+ <div class="meter-head"><span>Feeling more at ease</span><span class="meter-value" id="meterLabel">Just starting</span></div>
+ <div class="meter" role="progressbar" aria-label="Mina's comfort" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8" id="meter"><div class="fill" id="fill"></div></div>
+ <div class="mood-row"><span>A little tense</span><span>Completely relaxed</span></div>
+ <div class="message" id="message"><div class="bubble-icon" id="bubbleIcon">💭</div><p id="line"><strong>Mina says:</strong> “Thanks for asking first. Just a gentle hair pat sounds lovely.”</p></div>
+ <div class="controls"><button class="reset" id="reset">Start over</button><span class="microcopy">Stay on her hair · slow strokes feel best</span></div>
+ <div class="footer">A gentle, consent-first comfort game. The only interaction is a friendly hair pat.</div>
+</section>
+</main>
+<script>
+(()=>{
+ const zone=document.getElementById('hairZone'),svg=document.getElementById('portrait'),trail=document.getElementById('strokeTrail');
+ const fill=document.getElementById('fill'),meter=document.getElementById('meter'),label=document.getElementById('meterLabel'),line=document.getElementById('line'),icon=document.getElementById('bubbleIcon'),message=document.getElementById('message'),status=document.getElementById('status'),hint=document.getElementById('hint'),game=document.getElementById('game');
+ let comfort=8,dragging=false,points=[],lastTick=0,strokes=0,won=false;
+ const lines=[['“That feels really soothing. Thank you.”','🌼'],['“You’re very gentle. I can feel myself relaxing.”','✨'],['“I didn’t realize how tense I was.”','🌸'],['“This is exactly the quiet moment I needed.”','🫧'],['“I feel safe and cozy. Thanks for checking in.”','💗']];
+ function position(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse())}
+ function inHair(pt){const x=(pt.x-199)/79,y=(pt.y-143)/51;return x*x+y*y<=1}
+ function update(){comfort=Math.min(100,comfort);fill.style.width=comfort+'%';meter.setAttribute('aria-valuenow',Math.round(comfort));label.textContent=comfort<25?'Just starting':comfort<55?'Settling in':comfort<85?'Feeling cozy':'Fully relaxed';if(comfort>=100&&!won){won=true;game.classList.add('complete');status.textContent='Completely relaxed';say('“I feel so much lighter now. Thanks for making space for me.”','🌷');hint.textContent='A little kindness can go a long way';}}
+ function say(text,emoji){line.innerHTML='<strong>Mina says:</strong> '+text;icon.textContent=emoji;message.classList.remove('pop');void message.offsetWidth;message.classList.add('pop')}
+ function sparkle(x,y){const el=document.createElement('span');el.className='sparkle';el.textContent=['✦','♡','✧'][Math.floor(Math.random()*3)];el.style.left=x+'px';el.style.top=y+'px';document.querySelector('.scene').appendChild(el);setTimeout(()=>el.remove(),1050)}
+ function stroke(e){const pt=position(e);if(!inHair(pt))return false;points.push(pt);if(points.length>10)points.shift();trail.setAttribute('d',points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join(' '));const now=Date.now();if(now-lastTick>115){comfort+=.65;lastTick=now;update();if(Math.random()<.14){const r=svg.getBoundingClientRect();sparkle(r.left+r.width*(.38+Math.random()*.25),r.top+r.height*.22)}}return true}
+ zone.addEventListener('pointerdown',e=>{const p=position(e);if(!inHair(p))return;dragging=true;points=[p];zone.setPointerCapture(e.pointerId);stroke(e);hint.style.opacity='.35';e.preventDefault()});
+ zone.addEventListener('pointermove',e=>{if(!dragging)return;if(stroke(e))e.preventDefault()});
+ function end(){if(!dragging)return;dragging=false;points=[];trail.setAttribute('d','');strokes++;if(comfort<25)say('“Thank you. That’s a nice way to slow down.”','🌱');else if(comfort<60){const a=lines[Math.min(strokes-1,2)];say(a[0],a[1]);}else if(comfort<100){const a=lines[Math.min(3+Math.floor(Math.random()*2),4)];say(a[0],a[1]);}if(comfort<100)status.textContent=comfort>55?'Relaxing':'Feeling a little calmer';}
+ zone.addEventListener('pointerup',end);zone.addEventListener('pointercancel',end);
+ document.getElementById('reset').addEventListener('click',()=>{comfort=8;dragging=false;won=false;strokes=0;game.classList.remove('complete');status.textContent='Here with you';hint.textContent='↔ Gently stroke the highlighted hair';hint.style.opacity='1';say('“Thanks for asking first. Just a gentle hair pat sounds lovely.”','💭');update()});
+})();
+</script>
+</body>
+</html>
