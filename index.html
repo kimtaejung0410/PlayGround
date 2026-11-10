@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff7f0">
+<title>Brush & Bloom — a cozy haircare game</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+:root{--ink:#493b55;--muted:#8d8092;--pink:#ef8da8;--coral:#f3a18f;--cream:#fffaf4;--lilac:#c9b8ef;--green:#acd5b7}
+*{box-sizing:border-box} body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 17% 8%,#fff 0%,transparent 35%),linear-gradient(135deg,#fff8f1 0%,#f9f2ff 55%,#effaf5 100%);font-family:'DM Sans',sans-serif;color:var(--ink);display:flex;align-items:center;justify-content:center;padding:24px;overflow-x:hidden}
+button{font:inherit;color:inherit}.app{width:min(1120px,100%);position:relative}.topbar{display:flex;align-items:center;justify-content:space-between;margin:0 auto 15px;max-width:1000px}.brand{display:flex;align-items:center;gap:12px}.brand-icon{height:44px;width:44px;border-radius:15px;display:grid;place-items:center;background:#fff;box-shadow:0 6px 20px #795c7415;font-size:23px}.brand-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:-.3px}.brand-sub{font-size:11px;color:var(--muted);letter-spacing:1.6px;text-transform:uppercase;margin-top:1px}.top-actions{display:flex;gap:9px}.icon-btn{border:1px solid #ede2e8;background:#fffaf9;width:42px;height:42px;border-radius:14px;cursor:pointer;box-shadow:0 3px 12px #795c740c;transition:.2s}.icon-btn:hover{transform:translateY(-2px);background:#fff}
+.game-card{background:#fffcfae8;border:1px solid #fff;box-shadow:0 24px 70px #76588215,0 3px 12px #7658820b;border-radius:30px;padding:20px;max-width:1000px;margin:auto}.game-head{display:flex;align-items:center;justify-content:space-between;padding:1px 5px 16px}.heading h1{font:700 clamp(23px,3vw,31px)/1.1 'Playfair Display',serif;margin:0 0 6px}.heading p{margin:0;color:var(--muted);font-size:13px}.mission{display:flex;align-items:center;gap:10px;background:#fff5ee;padding:10px 15px;border-radius:16px;border:1px solid #f8e6db}.mission-icon{font-size:23px}.mission b{font-size:12px;display:block}.mission small{font-size:11px;color:var(--muted)}
+.scene-wrap{position:relative;border-radius:23px;overflow:hidden;background:#e8e4f8;line-height:0;touch-action:none;user-select:none}.scene{width:100%;height:auto;display:block;cursor:none}.scene text{font-family:'DM Sans',sans-serif}.progress-wrap{position:absolute;left:50%;top:17px;transform:translateX(-50%);width:min(370px,70%);display:flex;align-items:center;gap:10px;padding:9px 13px;background:#ffffffdf;backdrop-filter:blur(8px);border:1px solid #fff;border-radius:16px;box-shadow:0 4px 16px #55517517;line-height:1}.progress-track{height:9px;flex:1;background:#eee7f0;border-radius:20px;overflow:hidden}.progress-fill{height:100%;width:0%;border-radius:20px;background:linear-gradient(90deg,#f3a18f,#ec80ab,#b19ce3);transition:width .4s ease}.progress-label{font-size:11px;font-weight:800;white-space:nowrap;color:#796b86}.hint{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);background:#fffdf5e8;border:1px solid #fff;border-radius:30px;padding:9px 16px;font-size:12px;font-weight:700;color:#70617d;box-shadow:0 4px 15px #38304918;white-space:nowrap;line-height:1.2;transition:opacity .4s}.hint.hidden{opacity:0;pointer-events:none}.scene-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 5px 1px;gap:12px}.tip{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}.tip span{font-size:16px}.controls{display:flex;gap:9px}.action{border:0;border-radius:13px;padding:11px 17px;font-size:12px;font-weight:800;cursor:pointer;transition:transform .18s,filter .18s}.action:hover{transform:translateY(-2px);filter:brightness(1.03)}.secondary{background:#f4eef7;color:#796a85}.primary{background:linear-gradient(135deg,#f294a9,#ed87ab);color:white;box-shadow:0 5px 12px #ee8ca633}.action:disabled{opacity:.45;cursor:default;transform:none}.swatches{display:none;align-items:center;gap:7px;margin-left:4px}.swatches.show{display:flex}.swatch{border:2px solid white;box-shadow:0 1px 5px #61516b40;border-radius:50%;width:24px;height:24px;cursor:pointer}.swatch.selected{outline:2px solid #8e77a5}
+.toast{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-40%) scale(.85);opacity:0;pointer-events:none;background:#fffdfa;padding:19px 24px;border-radius:20px;text-align:center;box-shadow:0 15px 40px #66507033;transition:.35s;line-height:1.3;min-width:220px}.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}.toast .emoji{font-size:36px}.toast h2{font:700 24px 'Playfair Display',serif;margin:5px 0}.toast p{font-size:12px;color:var(--muted);margin:0}.sparkle{pointer-events:none}
+@media(max-width:650px){body{padding:12px 10px 20px;align-items:flex-start}.app{margin:auto 0}.topbar{margin-bottom:10px}.brand-icon{height:39px;width:39px}.brand-name{font-size:19px}.brand-sub{font-size:9px}.icon-btn{width:38px;height:38px}.game-card{padding:13px;border-radius:23px}.game-head{padding:2px 3px 12px;align-items:flex-start}.heading h1{font-size:23px}.heading p{font-size:11px;max-width:220px;line-height:1.4}.mission{padding:8px 10px;gap:6px}.mission-icon{font-size:19px}.mission small{font-size:9px}.mission b{font-size:10px}.scene-wrap{border-radius:17px}.progress-wrap{top:9px;padding:7px 10px;width:70%;gap:7px}.progress-label{font-size:9px}.hint{bottom:9px;font-size:10px;padding:7px 11px}.scene-footer{padding:11px 2px 1px;align-items:flex-start}.tip{font-size:10px;max-width:140px;line-height:1.35}.action{padding:10px 12px;font-size:11px}.swatch{width:20px;height:20px}.controls{gap:6px}}
+@media(max-width:390px){.mission{display:none}.scene-footer{flex-wrap:wrap}.tip{max-width:none}.controls{margin-left:auto}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar"><div class="brand"><div class="brand-icon">🌷</div><div><div class="brand-name">Brush & Bloom</div><div class="brand-sub">a little moment of calm</div></div></div><div class="top-actions"><button class="icon-btn" id="soundBtn" aria-label="Toggle sound" title="Sound on">🔔</button><button class="icon-btn" id="helpBtn" aria-label="How to play" title="How to play">❔</button></div></header>
+  <section class="game-card" aria-label="Hair brushing game">
+    <div class="game-head"><div class="heading"><h1>A fresh, happy start</h1><p>Give Mia's hair a gentle brush and help her get ready for the day.</p></div><div class="mission"><span class="mission-icon">✨</span><div><b>Today's little goal</b><small>Brush until her hair shines!</small></div></div></div>
+    <div class="scene-wrap" id="sceneWrap">
+      <svg class="scene" id="scene" viewBox="0 0 900 560" role="img" aria-label="Mia, a smiling girl ready to have her hair brushed">
+        <defs>
+          <linearGradient id="wall" x2="0" y2="1"><stop stop-color="#e9e5fa"/><stop offset="1" stop-color="#f8e9f2"/></linearGradient>
+          <linearGradient id="hairGrad" x2=".8" y2="1"><stop stop-color="#8d5946"/><stop offset=".45" stop-color="#aa7055"/><stop offset="1" stop-color="#75483d"/></linearGradient>
+          <linearGradient id="shirt" x2="0" y2="1"><stop stop-color="#f4a4b7"/><stop offset="1" stop-color="#df7f9b"/></linearGradient>
+          <linearGradient id="brushWood" x2="0" y2="1"><stop stop-color="#c89165"/><stop offset="1" stop-color="#9c674b"/></linearGradient>
+          <filter id="shadow" x="-40%" y="-30%" width="180%" height="180%"><feGaussianBlur stdDeviation="8"/></filter>
+          <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.2" fill="#fff" opacity=".55"/></pattern>
+        </defs>
+        <!-- dreamy dressing room -->
+        <rect width="900" height="560" fill="url(#wall)"/><rect width="900" height="560" fill="url(#dots)"/>
+        <path d="M0 400 Q180 370 340 402 T650 395 T900 400 V560 H0Z" fill="#f2dfe9"/>
+        <ellipse cx="456" cy="507" rx="210" ry="25" fill="#c4a8c8" opacity=".22"/>
+        <path d="M72 87 Q80 52 114 51 Q149 56 154 87 L149 184 Q113 205 77 181Z" fill="#fff9f3" stroke="#fff" stroke-width="8" opacity=".85"/>
+        <path d="M90 105 Q112 73 137 105 M89 122 Q111 91 137 122 M89 139 Q111 109 137 139" fill="none" stroke="#f3bbca" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="111" cy="79" r="7" fill="#ed92a9"/><circle cx="112" cy="167" r="7" fill="#ed92a9"/>
+        <path d="M730 91 Q754 56 779 85 Q802 53 824 85 Q854 75 858 109 Q855 140 795 164 Q736 142 730 114Z" fill="#fff9f3" stroke="#fff" stroke-width="7" opacity=".8"/>
+        <path d="M795 99v34 M778 116h34" stroke="#e9a5bc" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="201" cy="280" r="6" fill="#f3a6b6"/><circle cx="680" cy="235" r="7" fill="#d5b9eb"/><circle cx="721" cy="334" r="5" fill="#f5c27f"/>
+        <path d="M181 416 Q225 396 269 416 L288 466 H163Z" fill="#c9b5df"/><path d="M198 414 Q223 373 252 411" fill="none" stroke="#91b989" stroke-width="10" stroke-linecap="round"/><ellipse cx="210" cy="394" rx="18" ry="9" fill="#79ac82" transform="rotate(-35 210 394)"/><ellipse cx="245" cy="392" rx="17" ry="9" fill="#8fc398" transform="rotate(28 245 392)"/><circle cx="229" cy="385" r="11" fill="#ec9aaf"/>
+        <!-- chair and shoulders -->
+        <path d="M330 472 Q335 413 390 410 H512 Q568 414 575 472 L595 560 H311Z" fill="#c4b1df"/>
+        <path d="M360 434 Q449 399 542 434 L581 560 H316Z" fill="url(#shirt)"/>
+        <path d="M418 430 Q449 458 480 430" fill="none" stroke="#ffced6" stroke-width="5" opacity=".7"/>
+        <circle cx="448" cy="485" r="3" fill="#ffe3bd"/><circle cx="448" cy="507" r="3" fill="#ffe3bd"/><circle cx="448" cy="529" r="3" fill="#ffe3bd"/>
+        <!-- hair, long sides behind face -->
+        <g id="hairGroup">
+          <path d="M322 229 Q313 129 389 100 Q445 75 505 104 Q590 139 579 252 L595 386 Q583 424 541 412 L530 300 L371 305 L357 410 Q322 430 301 395Z" fill="url(#hairGrad)"/>
+          <path d="M333 236 Q326 158 383 117 Q403 104 421 105 Q369 154 374 263 L359 383 Q343 396 329 382Z" fill="#c08564" opacity=".55"/>
+          <path d="M563 209 Q577 270 562 382 Q551 400 539 385 L527 270 Q531 177 495 112 Q555 139 563 209Z" fill="#66413c" opacity=".48"/>
+          <path d="M343 190 Q375 100 453 102 Q530 102 561 184 Q541 151 510 148 Q469 166 432 145 Q392 178 343 190Z" fill="url(#hairGrad)"/>
+          <path d="M393 119 Q368 150 365 188 M413 112 Q390 146 389 164 M528 132 Q552 158 553 190" fill="none" stroke="#d49a75" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+          <!-- cute hair clip -->
+          <g id="clip" transform="translate(535 150)"><path d="M0 9 Q-24 -9 -28 6 Q-25 20 -1 13 Q24 26 29 10 Q28 -5 1 5Z" fill="#f4a4b7" stroke="#fff1f4" stroke-width="3"/><circle cx="0" cy="9" r="5" fill="#ffe6a4"/></g>
+        </g>
+        <!-- face -->
+        <path d="M366 218 Q366 154 450 151 Q533 154 533 218 L520 286 Q504 337 450 343 Q396 337 380 286Z" fill="#f7c9a9"/>
+        <path d="M367 223 Q366 170 393 149 Q420 125 454 133 Q413 144 408 174 Q391 193 367 223Z" fill="#aa7055"/>
+        <path d="M533 223 Q535 172 507 150 Q489 136 470 135 Q511 150 500 182 Q512 204 533 223Z" fill="#8d5946"/>
+        <!-- ears -->
+        <ellipse cx="368" cy="255" rx="15" ry="21" fill="#f2b999"/><ellipse cx="532" cy="255" rx="15" ry="21" fill="#f2b999"/>
+        <ellipse cx="368" cy="256" rx="7" ry="11" fill="#e99f91"/><ellipse cx="532" cy="256" rx="7" ry="11" fill="#e99f91"/>
+        <!-- face details -->
+        <path d="M399 239 Q415 225 431 239" fill="none" stroke="#784e4b" stroke-width="4" stroke-linecap="round"/>
+        <path d="M468 239 Q484 225 500 239" fill="none" stroke="#784e4b" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="416" cy="253" rx="4.7" ry="6.4" fill="#493b55"/><ellipse cx="484" cy="253" rx="4.7" ry="6.4" fill="#493b55"/>
+        <circle cx="417" cy="251" r="1.7" fill="#fff"/><circle cx="485" cy="251" r="1.7" fill="#fff"/>
+        <ellipse cx="396" cy="274" rx="14" ry="7" fill="#ef8d99" opacity=".38"/><ellipse cx="504" cy="274" rx="14" ry="7" fill="#ef8d99" opacity=".38"/>
+        <path d="M440 292 Q450 300 460 292" fill="none" stroke="#d38c7f" stroke-width="3" stroke-linecap="round"/>
+        <path id="smile" d="M430 309 Q450 327 471 308" fill="none" stroke="#a95e67" stroke-width="4" stroke-linecap="round"/>
+        <path d="M437 312 Q450 318 464 312" fill="none" stroke="#fff1e8" stroke-width="2"/>
+        <!-- brushing glimmers appear here -->
+        <g id="sparkles"></g>
+        <!-- brush follows pointer -->
+        <g id="brush" transform="translate(640 336) rotate(-35)" pointer-events="none" style="display:none;filter:drop-shadow(0 5px 3px #553c4030)">
+          <rect x="-11" y="-5" width="22" height="69" rx="10" fill="url(#brushWood)" stroke="#84553f" stroke-width="2"/>
+          <path d="M-9 12 Q0 4 9 12 L9 0 Q0 -8 -9 0Z" fill="#ef9eb4" stroke="#fff" stroke-width="2"/>
+          <path d="M-6 14v10 M0 13v11 M6 14v10" stroke="#f9e3be" stroke-width="2" stroke-linecap="round"/>
+          <circle cy="-2" r="2.5" fill="#ffdf91"/>
+        </g>
+      </svg>
+      <div class="progress-wrap"><span>✨</span><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><span class="progress-label" id="progressLabel">0 / 12</span></div>
+      <div class="hint" id="hint">🪮 Drag the brush gently through her hair</div>
+      <div class="toast" id="toast"><div class="emoji">🌟</div><h2>So lovely!</h2><p>Mia's ready for a bright new day.</p></div>
+    </div>
+    <div class="scene-footer"><div class="tip"><span>💡</span><span id="tipText">Brush over the top and sides of Mia's hair.</span></div><div class="controls"><div class="swatches" id="swatches" aria-label="Choose hair clip color"><button class="swatch selected" style="background:#f4a4b7" data-color="#f4a4b7" aria-label="Pink clip"></button><button class="swatch" style="background:#a7c7ed" data-color="#a7c7ed" aria-label="Blue clip"></button><button class="swatch" style="background:#f2c56e" data-color="#f2c56e" aria-label="Yellow clip"></button></div><button class="action secondary" id="resetBtn">↻ Start over</button><button class="action primary" id="finishBtn" disabled>Finish styling →</button></div></div>
+  </section>
+</main>
+<script>
+(()=>{
+ const svg=document.getElementById('scene'), wrap=document.getElementById('sceneWrap'), brush=document.getElementById('brush');
+ const fill=document.getElementById('progressFill'), label=document.getElementById('progressLabel'), hint=document.getElementById('hint'), toast=document.getElementById('toast');
+ const finish=document.getElementById('finishBtn'), reset=document.getElementById('resetBtn'), sparkles=document.getElementById('sparkles');
+ let strokes=0, drawing=false, last=null, pathDistance=0, completed=false, selectedColor='#f4a4b7', sound=true, audioCtx=null;
+ const target=12;
+ function pos(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(svg.getScreenCTM().inverse());return {x:q.x,y:q.y}}
+ function hairAt(p){const top=(p.y>112&&p.y<212&&p.x>341&&p.x<559);const left=(p.y>=185&&p.y<389&&p.x>309&&p.x<375);const right=(p.y>=185&&p.y<389&&p.x>526&&p.x<580);return top||left||right}
+ function sparkle(x,y){const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.setAttribute('class','sparkle');g.setAttribute('transform',`translate(${x} ${y})`);g.innerHTML='<path d="M0-9 Q1-1 8 0 Q1 1 0 9 Q-1 1-8 0 Q-1-1 0-9Z" fill="#fff6ba" stroke="#fff" stroke-width="1.4"/><circle cx="10" cy="-8" r="2" fill="#fff"/>';sparkles.appendChild(g);setTimeout(()=>g.remove(),1800)}
+ function playNote(){if(!sound)return;try{audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.value=660+Math.random()*300;g.gain.setValueAtTime(.035,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.22);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+.23)}catch(_){}}
+ function update(){fill.style.width=`${Math.min(strokes/target*100,100)}%`;label.textContent=`${strokes} / ${target}`;if(strokes>0)hint.classList.add('hidden');if(strokes>=target&&!completed){completed=true;finish.disabled=false;document.getElementById('tipText').textContent='Beautiful! Pick a clip color, then finish her look.';document.getElementById('swatches').classList.add('show');toast.classList.add('show');playNote();setTimeout(()=>toast.classList.remove('show'),2100)}}
+ function move(e){const p=pos(e);brush.style.display='';brush.setAttribute('transform',`translate(${p.x} ${p.y+13}) rotate(-35)`);if(drawing){if(hairAt(p)){pathDistance+=last?Math.hypot(p.x-last.x,p.y-last.y):0;if(pathDistance>=34){strokes=Math.min(target,strokes+1);pathDistance=0;sparkle(p.x,p.y);playNote();update()}}else{pathDistance=0}last=p}}
+ wrap.addEventListener('pointerdown',e=>{if(completed)return;const p=pos(e);if(!hairAt(p)){hint.textContent='🪮 Start on the top or sides of her hair';hint.classList.remove('hidden');setTimeout(()=>hint.classList.add('hidden'),1800);return}drawing=true;last=p;pathDistance=0;wrap.setPointerCapture(e.pointerId);move(e)});
+ wrap.addEventListener('pointermove',move);wrap.addEventListener('pointerup',()=>{drawing=false;last=null;pathDistance=0});wrap.addEventListener('pointercancel',()=>{drawing=false;last=null});
+ document.getElementById('soundBtn').addEventListener('click',e=>{sound=!sound;e.currentTarget.textContent=sound?'🔔':'🔕';e.currentTarget.title=sound?'Sound on':'Sound off'});
+ document.getElementById('helpBtn').addEventListener('click',()=>{hint.textContent='🪮 Press and drag across the hair on top and both sides.';hint.classList.remove('hidden');setTimeout(()=>{if(strokes===0)hint.textContent='🪮 Drag the brush gently through her hair';hint.classList.add('hidden')},2800)});
+ document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{selectedColor=b.dataset.color;document.querySelectorAll('.swatch').forEach(x=>x.classList.toggle('selected',x===b));document.querySelector('#clip path').setAttribute('fill',selectedColor)}));
+ finish.addEventListener('click',()=>{if(!completed)return;document.getElementById('tipText').textContent='Mia looks wonderful. Have a lovely day together!';finish.textContent='✓ All done!';finish.disabled=true;document.getElementById('smile').setAttribute('d','M430 305 Q450 333 471 305');sparkle(450,215);sparkle(535,180);sparkle(350,270)});
+ reset.addEventListener('click',()=>{strokes=0;drawing=false;last=null;pathDistance=0;completed=false;fill.style.width='0%';label.textContent='0 / 12';hint.textContent='🪮 Drag the brush gently through her hair';hint.classList.remove('hidden');toast.classList.remove('show');finish.disabled=true;finish.textContent='Finish styling →';document.getElementById('tipText').textContent='Brush over the top and sides of Mia\'s hair.';document.getElementById('swatches').classList.remove('show');sparkles.replaceChildren()});
+})();
+</script>
+</body>
+</html>
